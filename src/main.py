@@ -1,11 +1,41 @@
 # Resolve the problem!!
+
+# -*- coding: utf-8 -*-
+
 import string
+import random
+
 
 SYMBOLS = list('!"#$%&\'()*+,-./:;?@[]^_`{|}~')
-
-
+MINUSCULAS = list('abcdefghijklmnopqrstuvwxyz')
+MAYUSCULAS = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+NUMEROS = list('0123456789')
 def generate_password():
-    # Start coding here
+    
+    tam_pass = random.randint(8, 16)
+    passwd = list()
+
+    for i in range(tam_pass):
+        select = random.randint(1, 4)
+        if select == 1:
+            rango = random.randint(0, 25)
+            passwd.append(MINUSCULAS[rango])
+        
+        elif select == 2:
+            rango = random.randint(0, 25)
+            passwd.append(MAYUSCULAS[rango])
+        
+        elif select == 3:
+            rango = random.randint(0, 9)
+            passwd.append(NUMEROS[rango])
+        
+        else:
+            rango = random.randint(0, 27)
+            passwd.append(SYMBOLS[rango])
+        
+    print(passwd) #Imprime la constraseña
+    password = " ".join(passwd) #Convirte la contraseña de lista a string
+    return password
 
 
 def validate(password):
@@ -41,8 +71,10 @@ def validate(password):
     return False
 
 
+
 def run():
     password = generate_password()
+    
     if validate(password):
         print('Secure Password')
     else:
